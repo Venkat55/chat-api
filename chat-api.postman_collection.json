@@ -1,0 +1,633 @@
+{
+	"variables": [],
+	"info": {
+		"name": "chat-api",
+		"_postman_id": "8d724b3d-4029-8402-07e1-c413e97542a9",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "send_message",
+			"description": "",
+			"item": [
+				{
+					"name": "Valid scenario",
+					"request": {
+						"url": "localhost:4567/send_message",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n     \"from\": \"Person A\",\n     \"to\": \"Person B\",\n     \"content\": \"This is a test A-B\"\n}\n"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Invalid scenario | empty \"from\" parameter",
+					"request": {
+						"url": "localhost:4567/send_message",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n     \"from\": \"\",\n     \"to\": \"Person B\",\n     \"content\": \"This is a test A-B\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Invalid scenario | empty \"to\" parameter",
+					"request": {
+						"url": "localhost:4567/send_message",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n     \"from\": \"Person A\",\n     \"to\": \"\",\n     \"content\": \"This is a test A-B\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Invalid scenario | empty \"content\" parameter",
+					"request": {
+						"url": "localhost:4567/send_message",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n     \"from\": \"Person A\",\n     \"to\": \"Person B\",\n     \"content\": \"\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Invalid scenario | empty \"from\", \"to\", \"content\" parameter",
+					"request": {
+						"url": "localhost:4567/send_message",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n     \"from\": \"\",\n     \"to\": \"\",\n     \"content\": \"\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Invalid scenario | missing \"from\" parameter",
+					"request": {
+						"url": "localhost:4567/send_message",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n     \"to\": \"Person B\",\n     \"content\": \"This is a test A-B\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Invalid scenario | missing \"to\" parameter",
+					"request": {
+						"url": "localhost:4567/send_message",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n     \"from\": \"Person B\",\n     \"content\": \"This is a test A-B\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Invalid scenario | missing \"content\" parameter",
+					"request": {
+						"url": "localhost:4567/send_message",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"from\": \"Person A\",\n    \"to\": \"Person B\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Invalid scenario | missing \"from\", \"to\", \"content\" parameter",
+					"request": {
+						"url": "localhost:4567/send_message",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "recent_messages with sender and recipient",
+			"description": "",
+			"item": [
+				{
+					"name": "Valid scenario",
+					"request": {
+						"url": "localhost:4567/recent_messages/from/Person A/to/Person B",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Valid scenario | with valid limit",
+					"request": {
+						"url": {
+							"raw": "localhost:4567/recent_messages/from/Person A/to/Person B?limit=2",
+							"host": [
+								"localhost"
+							],
+							"port": "4567",
+							"path": [
+								"recent_messages",
+								"from",
+								"Person A",
+								"to",
+								"Person B"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "2",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Valid scenario | with valid time_span_in_days",
+					"request": {
+						"url": {
+							"raw": "localhost:4567/recent_messages/from/Person A/to/Person B?time_span_in_days=1",
+							"host": [
+								"localhost"
+							],
+							"port": "4567",
+							"path": [
+								"recent_messages",
+								"from",
+								"Person A",
+								"to",
+								"Person B"
+							],
+							"query": [
+								{
+									"key": "time_span_in_days",
+									"value": "1",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Valid scenario | with valid limit & time_span_in_days",
+					"request": {
+						"url": {
+							"raw": "localhost:4567/recent_messages/from/Person A/to/Person B?limit=2&time_span_in_days=1",
+							"host": [
+								"localhost"
+							],
+							"port": "4567",
+							"path": [
+								"recent_messages",
+								"from",
+								"Person A",
+								"to",
+								"Person B"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "2",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "time_span_in_days",
+									"value": "1",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Invalid scenario | with invalid time_span_in_days",
+					"request": {
+						"url": {
+							"raw": "localhost:4567/recent_messages/from/Person A/to/Person B?time_span_in_days=a",
+							"host": [
+								"localhost"
+							],
+							"port": "4567",
+							"path": [
+								"recent_messages",
+								"from",
+								"Person A",
+								"to",
+								"Person B"
+							],
+							"query": [
+								{
+									"key": "time_span_in_days",
+									"value": "a",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Invalid scenario | with invalid limit",
+					"request": {
+						"url": {
+							"raw": "localhost:4567/recent_messages/from/Person A/to/Person B?limit=a",
+							"host": [
+								"localhost"
+							],
+							"port": "4567",
+							"path": [
+								"recent_messages",
+								"from",
+								"Person A",
+								"to",
+								"Person B"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "a",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Invalid scenario | with invalid limit & time_span_in_days",
+					"request": {
+						"url": {
+							"raw": "localhost:4567/recent_messages/from/Person A/to/Person B?limit=a&time_span_in_days=b",
+							"host": [
+								"localhost"
+							],
+							"port": "4567",
+							"path": [
+								"recent_messages",
+								"from",
+								"Person A",
+								"to",
+								"Person B"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "a",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "time_span_in_days",
+									"value": "b",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "recent_messages all",
+			"description": "",
+			"item": [
+				{
+					"name": "Valid scenario",
+					"request": {
+						"url": "localhost:4567/recent_messages/all",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Valid scenario | with valid limit",
+					"request": {
+						"url": {
+							"raw": "localhost:4567/recent_messages/all?limit=2",
+							"host": [
+								"localhost"
+							],
+							"port": "4567",
+							"path": [
+								"recent_messages",
+								"all"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "2",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Valid scenario | with valid time_span_in_days",
+					"request": {
+						"url": {
+							"raw": "localhost:4567/recent_messages/all?time_span_in_days=1",
+							"host": [
+								"localhost"
+							],
+							"port": "4567",
+							"path": [
+								"recent_messages",
+								"all"
+							],
+							"query": [
+								{
+									"key": "time_span_in_days",
+									"value": "1",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Valid scenario | with valid limit & time_span_in_days",
+					"request": {
+						"url": {
+							"raw": "localhost:4567/recent_messages/all?limit=2&time_span_in_days=1",
+							"host": [
+								"localhost"
+							],
+							"port": "4567",
+							"path": [
+								"recent_messages",
+								"all"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "2",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "time_span_in_days",
+									"value": "1",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Invalid scenario | with invalid time_span_in_days",
+					"request": {
+						"url": {
+							"raw": "localhost:4567/recent_messages/all?time_span_in_days=a",
+							"host": [
+								"localhost"
+							],
+							"port": "4567",
+							"path": [
+								"recent_messages",
+								"all"
+							],
+							"query": [
+								{
+									"key": "time_span_in_days",
+									"value": "a",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Invalid scenario | with invalid limit",
+					"request": {
+						"url": {
+							"raw": "localhost:4567/recent_messages/all?limit=a",
+							"host": [
+								"localhost"
+							],
+							"port": "4567",
+							"path": [
+								"recent_messages",
+								"all"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "a",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Invalid scenario | with invalid limit & time_span_in_days",
+					"request": {
+						"url": {
+							"raw": "localhost:4567/recent_messages/all?limit=a&time_span_in_days=b",
+							"host": [
+								"localhost"
+							],
+							"port": "4567",
+							"path": [
+								"recent_messages",
+								"all"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "a",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "time_span_in_days",
+									"value": "b",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
