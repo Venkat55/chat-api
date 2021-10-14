@@ -32,3 +32,9 @@ bundle exec ruby app.rb
 
 ## API Documentation
 API Documentation for this app can be found in this [link](https://documenter.getpostman.com/view/13363258/UV5Uiy6X)
+
+## Seeding data 
+```bash
+mongorestore --db <db_name> --drop <path_of_your_backup>
+mongorestore --db chat_api_development --drop db_dump/chat_api_development
+```
